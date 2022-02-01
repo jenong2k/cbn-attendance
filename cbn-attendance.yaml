@@ -1,0 +1,148 @@
+openapi: 3.0.0
+info:
+  title: Absen
+  version: 1.0.0
+servers:
+  - url: https://api-attendance.cbn.net.id/api
+  - url: http://api-attendance.cbn.net.id/api
+paths:
+  /login:
+    post:
+      summary: ""
+      description: ""
+      operationId: ""
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+
+  /set_normal:
+    post:
+      summary: ""
+      description: ""
+      operationId: ""
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetNormal"
+      security:
+        - bearerAuth: []
+
+  /get_schedule:
+    get:
+      summary: ""
+      description: ""
+      operationId: ""
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json: {}
+      security:
+        - bearerAuth: []
+
+  /get_CBNOffices:
+    get:
+      summary: ""
+      description: ""
+      operationId: ""
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json: {}
+      security:
+        - bearerAuth: []
+
+  /get_CBNOnSite:
+    get:
+      summary: ""
+      description: ""
+      operationId: ""
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json: {}
+      security:
+        - bearerAuth: []
+
+  /get_ListLog:
+    post:
+      summary: ""
+      description: ""
+      operationId: ""
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json: {}
+      security:
+        - bearerAuth: []
+
+components:
+  schemas:
+    Login:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          default: ""
+        password:
+          type: string
+          default: ""
+    SetNormal:
+      type: object
+      properties:
+        type:
+          type: string
+          default: in
+        sch_key:
+          type: string
+          format: date
+        #          readOnly: true
+        #          default: '2021.11.25'
+        kode_lokasi:
+          type: string
+          enum:
+            - Lokasikantor_Cyber2_33
+            - Lokasikantor_Cyber2_8
+            - Lokasikantor_Manggala
+            - 47543
+        latitude:
+          type: number
+          format: double
+          default: -6.226146
+        longitude:
+          type: number
+          format: double
+          default: 106.832293
+        distance:
+          type: number
+          format: double
+          default: 75
+        type_absen:
+          type: string
+          enum:
+            - Onsite
+            - Online
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
